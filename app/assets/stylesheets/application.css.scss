@@ -44,15 +44,3 @@ h1, h2, h3 {
   background-color: white;
   background-image: none;
 }
-
-
-//Hamburger button colors
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: black;
-}
-.navbar-default .navbar-toggle {
-  border: 2px solid black;
-  &:hover, &:focus {
-    background-color: #00c6ff;
-  }
-}
