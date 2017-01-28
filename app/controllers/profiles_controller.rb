@@ -4,5 +4,6 @@ class ProfilesController < ApplicationController
 
   def new
   # Render blanck profile details from
+  @profile = Profile.new
   end
 end
