@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :only_current_user
 
   # GET /users/:user_id?/profile/new
 
@@ -43,12 +45,6 @@ def update
   end
 end
 
-private
-  def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :avatar, :job_title, :phone_number, :contact_email, :description)
-  end
-end
-
 def update
   @user = User.find( params[:user_id] )
   @profile = @user.profile
@@ -57,5 +53,16 @@ def update
     redirect_to user_path( params[:user_id] )
   else
     render action: :edit
+  end
+
+private
+  def profile_params
+    params.require(:profile).permit(:first_name, :last_name, :avatar, :job_title, :phone_number, :contact_email, :description)
+  end
+end
+  
+  def only_current_user
+    @user = User.find( params[:user_id] )
+    redirect_to(root_url) unless @user == current_user
   end
 end
